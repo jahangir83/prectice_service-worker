@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is Home page</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+
+    <div class="main_menu">
+        <nav>
+            <ul class="menu">
+                <li class="logo"><a href="index.html">Jahangir Developer</a></li>
+                <li class="item"><a href="Home.html">Home</a></li>
+                <li class="item has-submenu">
+                    <a href="#">About</a>
+                    <ul class="submenu">
+                        <li class="sumitem"><a href="#">design</a></li>
+                        <li class="sumitem"><a href="#">Programing</a></li>
+                        <li class="sumitem"><a href="#">Developer</a></li>
+                    </ul>
+
+                </li>
+                <li class="item"><a href="Blog.html">Blog</a></li>
+                <li class="item"><a href="Contact.html">Contact</a></li>
+
+
+                <li class="item button"><a href="#">Log In</a></li>
+                <li class="item button secondary"><a href="#">Sign Up</a></li>
+                <li class="toggle"><a href="#">&#9776;</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <h1>Learn Service worker in javascript</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum maiores aliquid dolorum! Iusto accusantium dolorum minus, odio culpa unde pariatur? Molestias, distinctio velit. Hic eos cupiditate ullam sint facere quam sed commodi? Inventore repellat, praesentium ad, dolorem vitae odio cumque nam distinctio voluptatem consequuntur animi nulla mollitia et minus cupiditate accusamus autem, quasi aliquid ea possimus nostrum ipsum officia ullam? Nam unde sint vel quos nobis quod. Quidem eligendi expedita suscipit fugit, magni quisquam vitae saepe id exercitationem officia vero. Facilis commodi explicabo ratione sunt, nulla corrupti accusamus sequi, iusto laboriosam saepe adipisci quidem officia natus voluptatum ab, possimus id!</p>
+
+    <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" width="100%" height="100%" alt="">
+
+    <script>
+
+        const toggle = document.querySelector('.toggle');
+        const menu = document.querySelector('.menu');
+
+        //toggle mobile menu
+        function toggleMenu(){
+            if(menu.classList.contains("active")){
+                menu.classList.remove("active")
+
+                toggle.querySelector("a").innerHTML = "<i class=’fas fa-bars’>&#9776</i>";
+            }else{
+                menu.classList.add("active");
+
+                toggle.querySelector("a").innerHTML = "<i class=’fas fa-bars’>&times</i>";
+            }
+        }
+        
+        toggle.addEventListener("click", toggleMenu, false)
+
+        //Dropdown menu functionality
+        const items = document.querySelectorAll(".item");
+
+        //Activate submenu
+        function toggleItem() {
+            if(this.classList.contains("submenu-active")){
+                this.classList.remove("submenu-active");
+            }else if(menu.querySelector('.submenu-active')) {
+                menu.querySelector(".submenu-active").classList.remove("submenu-active");
+                this.classList.add("submenu-active")
+            }else {
+                this.classList.add('submenu-active')
+            }
+        }
+        //event listeners
+        for(let item of items) {
+            if(item.querySelector(".submenu")) {
+                item.addEventListener("click", toggleItem, false);
+                item.addEventListener("keypress", toggleItem, false);
+            }
+        }
+        
+
+        /* Close Submenu From Anywhere */
+            function closeSubmenu(e) {
+                let isClickInside = menu.contains(e.target);
+
+                if (!isClickInside && menu.querySelector(".submenu-active")) {
+                    menu.querySelector(".submenu-active").classList.remove("submenu-active");
+                }
+            }
+
+            /* Event listener */
+            document.addEventListener("click", closeSubmenu, false);
+    </script>
+    
+
+    <script src="/js/main.js"></script
+</body>
+</html>
